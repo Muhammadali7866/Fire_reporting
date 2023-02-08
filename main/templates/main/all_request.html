@@ -1,0 +1,32 @@
+{% extends 'main/dashboard.html' %}
+{% block content %}
+<div class="card bg-light w-200px" style="margin: 95px 90px 50px 300px">
+    <div class="card-header ">All Request</div>
+    <div class="card-body">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Mobile </th>
+            <th>Location</th>
+            <th>Message</th>
+            <th>Reporting Time</th>
+            <th>Delete</th>
+            <th>Action</th>
+        </tr>
+        {% for fm in form %}
+        <tr>
+            <td>{{fm.name}}</td>
+            <td>{{fm.mobile}}</td>
+            <td>{{fm.location}}</td>
+            <td>{{fm.message}}</td>
+            <td>{{form.Postingdate}}</td>
+
+            <td><a href="{% url 'delete-request' fm.id %}"><button class="btn btn-danger">Delete</button></a></td>
+            <td><a href="{% url 'view-request' fm.id %}"><button class="btn btn-primary">Action</button></a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+  </div>
+{% endblock content %}

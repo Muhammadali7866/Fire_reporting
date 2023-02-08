@@ -1,0 +1,35 @@
+{% extends 'main/dashboard.html' %}
+{% block content %}
+<div class="card bg-grey mb-3" style="margin: 95px 90px 50px 300px">
+    <div class="card-header">Assigned request</div>
+    <div class="card-body">
+        <div>
+            <table class="table">
+           <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Location</th>
+            <th>Message</th>
+            <th>Reporting Time</th>
+            <th>Action</th>
+           </tr>
+           {% for form in forms  %}
+            <tr>
+              <td>{{form.name}}</td>
+              <td>{{form.mobile}}</td>
+              <td>{{form.location}}</td>
+              <td>{{form.message}}</td>
+              <td>{{form.Postingdate}}</td>
+              <td><a href="{% url 'view-request' form.id %}"><button class="btn btn-primary">Action</button></a></td>
+
+
+            </tr>
+            {% endfor %}
+          </table>
+          </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

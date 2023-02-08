@@ -1,0 +1,21 @@
+{% extends "main/dashboard.html" %}
+{% block content %}
+
+<div class="">
+    <div class="card bg-light mb-3" style="margin: 95px 90px 50px 300px">
+        <div class="card-header">Add Team</div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Add" class="btn btn-danger">
+                <a href="{% url 'view-team' %}"><button class="btn btn-secondary">Back</button></a>
+                
+            </form>
+          
+        </div>
+      </div>
+    
+</div>
+
+{% endblock %}

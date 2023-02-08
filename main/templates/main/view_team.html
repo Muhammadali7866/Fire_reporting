@@ -1,0 +1,30 @@
+{% extends "main/dashboard.html" %}
+{% block content %}
+<div class="card bg-light w-200px" style="margin: 95px 90px 50px 300px">
+    <div class="card-header ">View team</div>
+    <div class="card-body">
+    <table class="table">
+        <tr>
+            <th>Team Name</th>
+            <th>Team Lead</th>
+            <th>Lead Number</th>
+            <th>Team Member</th>
+            <th>Registration Date</th>
+            <th>Action</th>
+        </tr>
+        {% for fm in form %}
+        <tr>
+            <td>{{fm.team_name}}</td>
+            <td>{{fm.team_lead}}</td>
+            <td>{{fm.lead_number}}</td>
+            <td>{{fm.team_member}}</td>
+            <td>{{fm.postingDate}}</td>
+           <td> <a href="{% url 'edit-team' fm.id %}" ><button class="btn btn-primary">Edit</button></a></td>
+           <td> <a href="{% url 'delete-team' fm.id %}" ><button class="btn btn-danger">Delete</button></a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+  </div>
+{% endblock %}

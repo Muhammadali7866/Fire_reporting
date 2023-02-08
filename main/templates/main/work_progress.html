@@ -1,0 +1,30 @@
+{% extends 'main/dashboard.html' %}
+{% block content %}
+<div class="card bg-light mb-3" style="margin: 95px 90px 50px 300px">
+    <div class="card-header">Fire Relief Work In Progress</div>
+    <div class="card-body">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Mobile </th>
+                <th>Location</th>
+                <th>Message</th>
+                <th>Reporting Time</th>
+                <th>Action</th>
+            </tr>
+            {% for fm in form %}
+            <tr>
+                <td>{{fm.name}}</td>
+                <td>{{fm.mobile}}</td>
+                <td>{{fm.location}}</td>
+                <td>{{fm.message}}</td>
+                <td>{{fm.UpdationDate}}</td>
+                <td><a href="{% url 'view-request' fm.id %}"><button class="btn btn-primary">Action</button></a></td>
+
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %} "/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
+    
+    <link rel="stylesheet" href="{% static 'main/css/dataTables.bootstrap5.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}"/>
+    <title>Frontendfunn - Bootstrap 5 Admin Dashboard Template</title>
+    <style>
+      body{
+        background-color:grey;
+      }
+    </style>
+  <body>
+    <!-- top navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sidebar"
+          aria-controls="offcanvasExample"
+        >
+          <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
+        </button>
+        <a
+          class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold"
+          href="#"
+          >Admin Panel</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#topNavBar"
+          aria-controls="topNavBar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+          <ul class="navbar-nav">
+            <a href="{% url 'logout' %}"><button class="btn btn-primary ">Logout</button></a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- top navigation bar -->
+    <!-- offcanvas -->
+    <div
+      class="offcanvas offcanvas-start sidebar-nav bg-dark"
+      tabindex="-1"
+      id="sidebar"
+    >
+      <div class="offcanvas-body p-0">
+        <nav class="navbar-dark">
+          <ul class="navbar-nav">
+            <li>
+              <div class="text-muted small fw-bold text-uppercase px-3">
+                CORE
+              </div>
+            </li>
+            <li>
+              <a href="{% url 'dashboard' %}" class="nav-link px-3 active">
+                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
+            <li>
+              <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+                Interface
+              </div>
+            </li>
+            <li>
+              <a
+                class="nav-link px-3 sidebar-link"
+                data-bs-toggle="collapse"
+                href="#layouts">
+                <span class="me-2"><i class="bi bi-layout-split"></i></span>
+                <span>Fire Control Team</span>
+                <span class="ms-auto">
+                  <span class="right-icon">
+                    <i class="bi bi-chevron-down"></i>
+                  </span>
+                </span>
+              </a>
+              <div class="collapse" id="layouts">
+                <ul class="navbar-nav ps-3">
+                  <li>
+                    <a href="{% url 'add-team' %}" class="nav-link px-3">
+                      
+                      <span>Add Team</span>
+                    </a>
+                  </li>
+                  <li> <a href="{% url 'view-team' %}" class="nav-link px-3">
+                      <span>Manage Team</span>
+                  </a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+                <a
+                  class="nav-link px-3 sidebar-link"
+                  data-bs-toggle="collapse"
+                  href="#layout">
+                  <span class="me-2"><i class="bi bi-layout-split"></i></span>
+                  <span>Fire Alerts</span>
+                  <span class="ms-auto">
+                    <span class="right-icon">
+                      <i class="bi bi-chevron-down"></i>
+                    </span>
+                  </span>
+                </a>
+                <div class="collapse" id="layout">
+                  <ul class="navbar-nav ps-3">
+                    <li>
+                      <a href="{% url 'new-request' %}" class="nav-link px-3"> 
+                        <span>New Request</span>
+                      </a>
+                    </li>
+                    <li> <a href="{% url 'assign-request' %}" class="nav-link px-3">
+                        <span>Assign Request</span>
+                    </a></li>
+                    <li>
+                        <a href="{% url 'team-way' %}" class="nav-link px-3">
+                          
+                          <span>Team on the Way</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'work-progress' %}" class="nav-link px-3">
+                          
+                          <span>Relief work in progress</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'request-complete' %}" class="nav-link px-3">
+                          
+                          <span>Completed Requests</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'all-request' %}" class="nav-link px-3">
+                          
+                          <span>All Request</span>
+                        </a>
+                      </li>
+                      
+                  </ul>
+                </div>
+              </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- offcanvas -->
+    {% block content %}
+    <main class="mt-5 pt-3">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Dashboard</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="card bg-primary text-white h-100">
+              <div class="card-body py-5"> <h3>{{totalnew}}</h3></div>
+              <div class="card-footer d-flex">
+                <a href="{% url 'new-request' %}" class="small-box-footer"><i
+                  class="fas fa-arrow-circle-right"></i><button class="btn btn-primary">New Fire Request</button></a>
+                <span class="ms-auto">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3 ">
+            <div class="card bg-warning text-white h-100">
+              <div class="card-body py-5"> <h3>{{totalfire}}</h3>
+              </div>
+              <div class="card-footer d-flex">
+                <a href="{% url 'all-request' %}" class="small-box-footer"><i
+                  class="fas fa-arrow-circle-right"></i><button class="btn btn-warning">Total Fire Request</button></a>
+                <span class="ms-auto">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card bg-success text-white h-100">
+              <div class="card-body py-5"><h3>{{completerequest}}</h3></div>
+              <div class="card-footer d-flex">
+                <a href="{% url 'request-complete' %}" class="small-box-footer"><i
+                  class="fas fa-arrow-circle-right"></i><button class="btn btn-success">Fire Request Complete</button></a>
+                <span class="ms-auto">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3 ">
+            <div class="card bg-danger text-white h-100">
+              <div class="card-body py-5"><h3>{{assign}}</h3></div>
+              
+              
+              <div class="card-footer d-flex">
+                <a href="{% url 'assign-request' %}" class="small-box-footer"><i
+                  class="fas fa-arrow-circle-right"></i><button class="btn btn-danger">Assigned Fire Request</button></a>
+                <span class="ms-auto">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card bg-success text-white h-100">
+              <div class="card-body py-5"><h3>{{onway}}</h3></div>
+              <div class="card-footer d-flex">
+                <a href="{% url 'team-way' %}" class="small-box-footer"><i
+                  class="fas fa-arrow-circle-right"></i><button class="btn btn-success">Team On The Way Request</button></a>
+                <span class="ms-auto">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card bg-dark text-white h-100">
+              <div class="card-body py-5"><h3>{{workprogress}}</h3></div>
+              <div class="card-footer d-flex">
+                <a href="{% url 'work-progress' %}" class="small-box-footer"><i
+                  class="fas fa-arrow-circle-right"></i><button class="btn btn-dark">Fire Relief Work in Progress</button></a>
+                <span class="ms-auto">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        </div>
+      </div>
+    </main>
+    {% endblock content %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="{% static 'main/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'main/js/dataTables.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'main/js/script.js' %}"></script>
+    <script src="{% static 'main/js/jquery-3.5.1.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.bundle.min.js' %}"></script>
+
+
+  </body>
+</html>

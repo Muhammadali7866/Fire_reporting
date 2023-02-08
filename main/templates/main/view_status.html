@@ -1,0 +1,57 @@
+{% extends 'main/index.html' %}
+{% block body %}
+<div class="container mt-3">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="card my-4" style="border : 2px ridge green">
+            <h5 class="card-header text-info">Search Report by Name/Mobile No./Location</h5>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control"
+                           placeholder="Enter Name/Mobile No/Location"
+                           required>
+                           <br>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search" style="height: 35px"></i>search</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="card bg-light mb-3" >
+        <div class="card-header">Status</div>
+        <div class="card-body">
+            {% if report %}
+            <div class="card-body">
+                <table id="example1" class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile Number</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+        
+                    <tbody>
+                    {% for i in report %}
+                    <tr>
+                        <td>{{i.name}}</td>
+                        <td>{{i.mobile}}</td>
+                        <td>{{i.location}}</td>
+                        <td><a  href="{% url 'view-status-detail' i.id %}"><button class="btn btn-primary">Action</button></a></td>
+
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+          
+      </div>
+   
+{% endblock body %}
+

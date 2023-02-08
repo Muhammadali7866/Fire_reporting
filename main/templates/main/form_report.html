@@ -1,0 +1,46 @@
+{% extends "main/index.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <title>Document</title>
+<style>
+    body{
+        background-color:grey;
+    }
+</style>
+</head>
+<body>
+    {% block body %}
+
+    
+
+<div>
+ <div class="row">
+    <div class="d-flex justify-content-center ">
+    <h2 class="text-center mt-5 border border-primary border-4 rounded p-3">Online Reporting System</h2>
+    </div>
+    
+ </div>
+ 
+ <div class="">
+    <div class="card bg-light mb-3" style="margin: 20px 50px 50px 80px">
+        <div class="card-header">Online Fire Reporting</div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Submit" class="btn btn-primary">                
+            </form>
+          
+        </div>
+      </div>
+    
+</div>
+{% endblock %}
+</body>
+</html>
